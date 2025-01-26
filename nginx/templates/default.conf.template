@@ -1,0 +1,11 @@
+server {
+    listen 80 default_server;
+    server_name ${NGINX_HOST};
+
+root /usr/share/nginx/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+    proxy_pass http://sonarqube:9000;
+    }
+}
