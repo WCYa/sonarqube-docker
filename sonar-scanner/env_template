@@ -1,0 +1,5 @@
+SCAN_SOURCE_DIR="../"
+SCAN_CACHE_DIR="./.scan"
+SONAR_HOST_URL="https://sonarqube.test"
+SONAR_TOKEN=""
+SONAR_SCANNER_OPTS="-Dsonar.projectKey=<YOUR_PROJECT_KEY>"

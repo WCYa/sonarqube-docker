@@ -1,0 +1,15 @@
+name: sonar-scanner
+
+services:
+  scanner:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      target: sonar-scanner
+    environment:
+      SONAR_HOST_URL: ${SONAR_HOST_URL}
+      SONAR_TOKEN: ${SONAR_TOKEN}
+      SONAR_SCANNER_OPTS: ${SONAR_SCANNER_OPTS}
+    volumes:
+      - ${SCAN_CACHE_DIR}:/opt/sonar-scanner/.sonar/cache
+      - ${SCAN_SOURCE_DIR}:/usr/src
