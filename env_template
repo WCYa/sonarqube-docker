@@ -1,0 +1,7 @@
+POSTGRES_USER="sonarqube01"
+POSTGRES_PASSWORD="sonarqube01"
+POSTGRES_DB="sonar"
+NGINX_HOST="sonarqube.test"
+NGINX_SSL_CRT="nginx.crt"
+NGINX_SSL_KEY="nginx.key"
+NGINX_PORT_EXPOSE="9001:443"
