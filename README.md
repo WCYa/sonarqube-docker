@@ -7,7 +7,32 @@ sonarqube with nginx using docker compose example.
 - PostgreSQL: 15
 - Nginx: 1.25
 
-## Manipulate PostgreSQL
+## Notices
+
+- If you are using Unix-like system, ensure that the `vm.max_map_count` value is greater than `262144`. You can temporarily change it by running:
+   ```sh
+   sudo sysctl -w vm.max_map_count=262144
+   ```
+   To make the change permanent, add `vm.max_map_count=262144` to the end of `/etc/sysctl.conf`. After editing, apply the changes immediately without rebooting using:
+   ```sh
+   sudo sysctl -p
+   ```
+- If you are not using a private CA, you must remove the following lines from your Dockerfile:
+   ```
+   ADD ./private-ca.crt /usr/local/share/ca-certificates/private-ca.crt
+   RUN update-ca-certificates
+   ```
+- If your Nginx setup does not use TLS, you can rename the file `nginx/templates/ssl.conf.template` to `nginx/templates/ssl.conf.template.disable`, and restart the container:
+   ```sh
+   docker compose down proxy
+   docker compose up -d proxy
+   ```
+
+## Manipulate
+
+sonarqube default account/password: `admin/admin`
+
+### PostgreSQL
 
 Login PostgreSQL
 
