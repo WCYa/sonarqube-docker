@@ -1,0 +1,4 @@
+---
+nginx_ssl_crt: 'sonarqube.crt'
+nginx_ssl_key: 'sonarqube.key'
+sonar_ce_javaOpts: '-Xmx2G -Xms128m -XX:+HeapDumpOnOutOfMemoryError'

@@ -1,0 +1,9 @@
+---
+- name: Use template to configure SonarQube properties
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Template sonar.properties
+      template:
+        src: sonar.properties.j2
+        dest: /var/lib/docker/volumes/sonarqube_conf/_data/sonar.properties

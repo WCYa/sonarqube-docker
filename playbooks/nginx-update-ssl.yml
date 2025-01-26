@@ -1,0 +1,23 @@
+---
+- name: Update SSL for Nginx
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Copy Certificate
+      community.docker.docker_container_copy_into:
+        container: sonarqube-proxy-1
+        content: '{{ lookup("file", "files/{{ nginx_ssl_crt }}") }}'
+        container_path: '/etc/nginx/ssl/{{ nginx_ssl_crt }}'
+        mode: 0640
+
+    - name: Copy Private Key
+      community.docker.docker_container_copy_into:
+        container: sonarqube-proxy-1
+        content: '{{ lookup("file", "files/{{ nginx_ssl_key }}") }}'
+        container_path: '/etc/nginx/ssl/{{ nginx_ssl_key }}'
+        mode: 0640
+
+    - name: Reload Nginx
+      community.docker.docker_container_exec:
+        container: sonarqube-proxy-1
+        command: nginx -s reload
